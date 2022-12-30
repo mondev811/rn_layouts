@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   Image,
-  Dimensions,
 } from 'react-native';
 import React from 'react';
 
