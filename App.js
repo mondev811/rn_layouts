@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   ScrollView,
   Image,
+  ImageBackground,
 } from 'react-native';
 import React from 'react';
 
@@ -33,6 +34,13 @@ const App = () => {
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
+        <View style={styles.banner}>
+          <ImageBackground
+            source={require('./assets/img/bg.jpg')}
+            style={styles.banner}
+          />
+        </View>
+
         <View>
           <View style={styles.labelContainer}>
             <Text style={styles.label}>What to do in Paris</Text>
@@ -64,11 +72,13 @@ const App = () => {
           <View style={styles.labelContainer}>
             <Text style={styles.label}>Hotels in LA</Text>
           </View>
-          {hotels.map(item => (
-            <View key={item.id} style={styles.hotelsContainer}>
-              <Image source={item.imagesource} style={styles.hotelsImage} />
-            </View>
-          ))}
+          <View style={styles.hotelsContainer}>
+            {hotels.map(item => (
+              <View key={item.id} style={styles.hotelsContainerItem}>
+                <Image source={item.imagesource} style={styles.hotelsImage} />
+              </View>
+            ))}
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -81,34 +91,43 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
   },
-  labelContainer: {
-    paddingVertical: 10,
+  banner: {
+    height: 250,
+    width: '100%',
   },
   label: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: '800',
     color: '#000',
+    marginVertical: 20,
+  },
+  labelContainer: {
+    paddingVertical: 10,
   },
   activitiesContainer: {
     flexDirection: 'row',
   },
   activitiesImage: {
-    width: 200,
+    width: 250,
     height: 300,
     marginRight: 6,
   },
-  accomodationsContainer: {},
   accomodationsImage: {
-    width: 390,
-    height: 245,
+    width: '100%',
+    height: 200,
     marginBottom: 8,
   },
   hotelsContainer: {
+    flexDirection: 'row',
     flexWrap: 'wrap',
-    flex: 1,
+    justifyContent: 'space-between',
+  },
+  hotelsContainerItem: {
+    flexBasis: '49%',
   },
   hotelsImage: {
-    width: 200,
-    height: 200,
+    height: 190,
+    width: 190,
+    marginVertical: 5,
   },
 });
